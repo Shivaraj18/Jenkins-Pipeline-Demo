@@ -11,18 +11,7 @@ pipeline {
 					input ('Do you want to continue..? Yes/Abourt')
 				}
 			}
-			stage('Three') {
-				steps {
-					when {
-						not {
-							branch "master"
-						}
-					}
-					steps {
-						echo "Third phase! Hello, wait..."
-					}
-				}
-			}
+			
 			stage('Four') {
 				parallel {
 					stage('Unit Test') {
