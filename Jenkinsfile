@@ -19,7 +19,6 @@ pipeline{
 				}
 				steps{
 					echo "Hello! Third Stage"
-					ifconfig 
 				}
 			}
 			stage('Four'){
