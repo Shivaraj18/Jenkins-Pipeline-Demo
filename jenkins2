@@ -1,0 +1,39 @@
+pipeline{
+	agent any
+	stages{
+		stage('One'){
+			steps{
+				echo "Hi, Shiva..! This is first stage!"
+			}
+		}
+		stage('Two'){
+			steps{
+				input ('Want to proceed..??')
+			}
+		}
+		stage('Three'){
+			when{
+				not{
+					branch 'master'
+				}
+			}
+			steps{
+				echo "Third stage is Running..."
+			}
+		}
+		stage('Four'){
+			parallel{
+				stage('Unit Test'){
+					steps{
+						echo 'Unit Test is Running..!'
+					}
+				}
+				stage('Integration Test'){
+					steps{
+						echo 'Integration Test Running...:)'
+					}
+				}
+			}
+		}	
+	}
+}
