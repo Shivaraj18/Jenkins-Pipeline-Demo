@@ -1,6 +1,9 @@
 pipeline {
 	agent any {
 		stages {
+pipeline{
+	agent any 
+		stages {
 			stage('One'){
 				steps{
 					echo 'Stage one is running...'
@@ -8,19 +11,17 @@ pipeline {
 			}
 			stage('Two'){
 				steps{
-					input('Do you want to continue..? Yes/Abourt')
+					input ('Do you want to continue..? Yes/Abourt')
 				}
 			}
 			stage('Three'){
+				when{
+					not{
+						branch 'master'
+					}
+				}
 				steps{
-					when{
-						not{
-							branch "master"
-						}
-					}
-					steps{
-						echo "Third phase! Hello, wait..."
-					}
+					echo "Hello! Third Stage"
 				}
 			}
 			stage('Four'){
@@ -45,5 +46,5 @@ pipeline {
 				}
 			}
 		}
-	}
+	
 }
